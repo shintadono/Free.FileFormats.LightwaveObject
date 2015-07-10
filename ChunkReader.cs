@@ -22,11 +22,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Text;
 
-namespace Lightwave
+namespace Free.FileFormats.LightwaveObject
 {
 	public class ChunkReader : IDisposable
 	{
@@ -135,8 +134,8 @@ namespace Lightwave
 
 		public string GetIDString(uint value)
 		{
-			byte[] temp = BitConverter.GetBytes(value);
-			return ASCIIEncoder.GetString(temp.Reverse().ToArray(), 0, 4);
+			byte[] temp = BitConverter.GetBytes(Swap(value));
+			return ASCIIEncoder.GetString(temp, 0, 4);
 		}
 	}
 }
